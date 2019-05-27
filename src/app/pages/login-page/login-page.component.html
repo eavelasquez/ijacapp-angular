@@ -1,0 +1,23 @@
+<div class="login-page" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="50px">
+    <div class="logo-container" fxFlexAlign="center">
+        <img src="assets/img/logo.png" class="img-fluid" alt="ijacapp">
+    </div>
+    <div fxFlexAlign="center">
+        <p class="h3 font-weight-normal text-primary">Tu usuario</p>
+        <span class="font-weight-light text-muted">Por favor, confirme su usuario e ingrese su contraseña.</span>
+        <mat-divider></mat-divider>
+        <form (keyup.enter)="login(username, password)">
+            <mat-form-field class="login-field">
+                <input matInput placeholder="Usuario" name="username" [(ngModel)]="username" type="text" autocomplete="username" />
+            </mat-form-field>
+            <mat-form-field class="login-field">
+                <input matInput placeholder="Contraseña" name="password" [(ngModel)]="password" type="password" autocomplete="current-password" />
+            </mat-form-field>
+            <mat-error [textContent]="errorMessage"></mat-error>
+            <button mat-raised-button color="primary" class="login-field text-uppercase" (click)="login(username, password)" type="submit">
+                Iniciar sesión
+            </button>
+        </form>
+        <app-actions></app-actions>
+    </div>
+</div>

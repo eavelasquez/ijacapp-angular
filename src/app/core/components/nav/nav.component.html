@@ -1,0 +1,14 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav mode="side" [opened]="isOpen">
+        <div class="sidenav-logo-container">
+            <img src="assets/img/logo.png" class="img-fluid" alt="ijacapp">
+        </div>
+        <mat-nav-list>
+            <app-nav-menu-item *ngFor="let navigationItem of getNavigationItems()" [navigationItem]="navigationItem"></app-nav-menu-item>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <app-nav-toolbar [title]="getSelectedNavigationItem().title" (toggleSideNav)="toggleSideNav()" (logout)="logout()"></app-nav-toolbar>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
