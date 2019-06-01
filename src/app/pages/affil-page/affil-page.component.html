@@ -1,49 +1,60 @@
 <div class="row m-5">
     <div class="col-sm-12 col-md-8">
-        <h3 mat-header class="text-uppercase rounded border-left border-success text-success font-weight-light">Formulario de afiliación</h3>
+        <p mat-header class="h3 text-uppercase pl-2 rounded border-left border-success text-success font-weight-light">Formulario de afiliación</p>
         <mat-card>
             <mat-card-content>
-                <form autocomplete="off">
+                <form [formGroup]="form" autocomplete="off">
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputName">Nombres</label>
-                            <input type="text" class="form-control" id="inputName" placeholder="Nombres" autofocus>
+                            <input type="text" class="form-control" id="inputName" formControlName="name" placeholder="Nombres" autofocus>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputSurname">Apellidos</label>
-                            <input type="text" class="form-control" id="inputSurname" placeholder="Apellidos">
+                            <input type="text" class="form-control" id="inputSurname" formControlName="surname" placeholder="Apellidos">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-2" formGroupName="document">
+                            <label for="inputType">Tipo</label>
+                            <select class="form-control" id="inputType" formControlName="type">
+                                <option>CC</option>
+                                <option>TI</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4" formGroupName="document">
                             <label for="inputDocument">Documento</label>
-                            <input type="text" class="form-control" id="inputDocument" placeholder="Documento">
+                            <input type="text" class="form-control" id="inputDocument" formControlName="number" placeholder="Documento">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputBorn">Fecha de nacimiento</label>
-                            <input type="date" class="form-control" id="inputBorn" placeholder="Fecha de nacimiento">
+                            <label for="inputdateBorn">Fecha de nacimiento</label>
+                            <div class="input-group">
+                                <input class="form-control" placeholder="yyyy-mm-dd" formControlName="dateBorn" ngbDatepicker #d="ngbDatepicker">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputAddress">Dirección</label>
-                        <input type="text" class="form-control" id="inputAddress" placeholder="Cra 45 #41-23">
+                        <input type="text" class="form-control" id="inputAddress" formControlName="address" placeholder="Cra 45 #41-23">
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="inputGender">Género</label>
-                            <select class="form-control" id="inputGender">
-                                <option selected>Género</option>
+                            <select class="form-control" id="inputGender" formControlName="gender">
                                 <option>Masculino</option>
                                 <option>Femenino</option>
                             </select>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputTelephone">Teléfono</label>
-                            <input type="text" class="form-control" id="inputTelephone" placeholder="Teléfono">
+                            <input type="text" class="form-control" id="inputTelephone" formControlName="telephone" placeholder="Teléfono">
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="inputOcupation">Ocupación</label>
-                            <input type="text" class="form-control" id="inputOcupation" placeholder="Ocupación">
+                            <label for="inputOccupation">Ocupación</label>
+                            <input type="text" class="form-control" id="inputOccupation" formControlName="occupation" placeholder="Ocupación">
                         </div>
                     </div>
                 </form>
@@ -51,17 +62,24 @@
         </mat-card>
     </div>
     <div class="col-sm-12 col-md-4">
-        <h3 mat-header class="text-uppercase rounded border-left border-success text-success font-weight-light">Comités</h3>
+        <p mat-header class="h3 text-uppercase pl-2 rounded border-left border-success text-success font-weight-light">Comités</p>
         <mat-list>
             <mat-divider></mat-divider>
-            <mat-selection-list>
-                <mat-list-option *ngFor="let item of [1, 1, 1, 1, 1, 1]; let i = index">
+            <mat-selection-list #commit>
+                <mat-list-option *ngFor="let item of [1, 1, 1, 1, 1]; let i = index">
                     <mat-icon mat-list-icon>import_contacts</mat-icon>{{ i }}
                 </mat-list-option>
             </mat-selection-list>
         </mat-list>
+        <div class="text-center">
+            <button mat-icon-button class="mt-2 mr-2 text-success"><i class="material-icons">arrow_back</i></button>
+            <button mat-icon-button class="mt-2 ml-2 text-success"><i class="material-icons">arrow_forward</i></button>
+        </div>
     </div>
     <div class="col-sm-12 text-right mt-3">
-        <button type="submit" class="btn btn-outline-success btn-sm px-5" value="guardar">Guardar</button>
+        <button type="submit" class="btn btn-outline-success btn-sm px-5" (click)="onSubmit()">Guardar</button>
     </div>
 </div>
+<pre>{{ form.value | json }}</pre>
+<pre>{{ form.status | json }}</pre>
+<p>Options selected: {{ commit.selectedOptions.selected.length }}</p>

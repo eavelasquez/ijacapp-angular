@@ -14,7 +14,7 @@
                 <input matInput placeholder="Contraseña" name="password" [(ngModel)]="password" type="password" autocomplete="current-password" />
             </mat-form-field>
             <mat-error [textContent]="errorMessage"></mat-error>
-            <button mat-raised-button color="primary" class="login-field text-uppercase" (click)="login(username, password)" type="submit">
+            <button mat-raised-button class="login-field text-uppercase bg-primary text-light" (click)="login(username, password)" type="submit">
                 iniciar sesión
             </button>
         </form>

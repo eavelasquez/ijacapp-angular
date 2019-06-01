@@ -7,6 +7,8 @@ import { SearchPageRoutingModule } from './search-page-routing.module';
 import { SearchPageComponent } from './search-page.component';
 
 import { MatTableModule } from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [SearchPageComponent],
@@ -14,7 +16,9 @@ import { MatTableModule } from '@angular/material/table';
     CommonModule,
     SearchPageRoutingModule,
     NgbModule,
-    MatTableModule
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class SearchPageModule { }
