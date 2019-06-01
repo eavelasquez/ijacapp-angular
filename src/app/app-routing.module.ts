@@ -11,7 +11,7 @@ import { UserManualComponent } from './core/components/user-manual/user-manual.c
 const routes: Routes = [
   { path: 'start', component: StartComponent },
   { path: 'user-manual', component: UserManualComponent },
-  { path: 'login', loadChildren: './pages/login-page/login-page.module#LoginPageModule' },
+  { path: 'login', loadChildren: () => import('./pages/login-page/login-page.module').then(m => m.LoginPageModule) },
   { path: 'dashboard', component: NavComponent, children: navRoutes }, // canActivateChild: [AuthGuard], canActivate: [AuthGuard]
   { path: '**', redirectTo: 'start' }
 ];

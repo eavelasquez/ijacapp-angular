@@ -1,3 +1,67 @@
-<p>
-  affil-page works!
-</p>
+<div class="row m-5">
+    <div class="col-sm-12 col-md-8">
+        <h3 mat-header class="text-uppercase rounded border-left border-success text-success font-weight-light">Formulario de afiliación</h3>
+        <mat-card>
+            <mat-card-content>
+                <form autocomplete="off">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputName">Nombres</label>
+                            <input type="text" class="form-control" id="inputName" placeholder="Nombres" autofocus>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputSurname">Apellidos</label>
+                            <input type="text" class="form-control" id="inputSurname" placeholder="Apellidos">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputDocument">Documento</label>
+                            <input type="text" class="form-control" id="inputDocument" placeholder="Documento">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputBorn">Fecha de nacimiento</label>
+                            <input type="date" class="form-control" id="inputBorn" placeholder="Fecha de nacimiento">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress">Dirección</label>
+                        <input type="text" class="form-control" id="inputAddress" placeholder="Cra 45 #41-23">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="inputGender">Género</label>
+                            <select class="form-control" id="inputGender">
+                                <option selected>Género</option>
+                                <option>Masculino</option>
+                                <option>Femenino</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputTelephone">Teléfono</label>
+                            <input type="text" class="form-control" id="inputTelephone" placeholder="Teléfono">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputOcupation">Ocupación</label>
+                            <input type="text" class="form-control" id="inputOcupation" placeholder="Ocupación">
+                        </div>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col-sm-12 col-md-4">
+        <h3 mat-header class="text-uppercase rounded border-left border-success text-success font-weight-light">Comités</h3>
+        <mat-list>
+            <mat-divider></mat-divider>
+            <mat-selection-list>
+                <mat-list-option *ngFor="let item of [1, 1, 1, 1, 1, 1]; let i = index">
+                    <mat-icon mat-list-icon>import_contacts</mat-icon>{{ i }}
+                </mat-list-option>
+            </mat-selection-list>
+        </mat-list>
+    </div>
+    <div class="col-sm-12 text-right mt-3">
+        <button type="submit" class="btn btn-outline-success btn-sm px-5" value="guardar">Guardar</button>
+    </div>
+</div>

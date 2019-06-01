@@ -9,6 +9,8 @@
     </mat-sidenav>
     <mat-sidenav-content>
         <app-nav-toolbar [title]="getSelectedNavigationItem().title" (toggleSideNav)="toggleSideNav()" (logout)="logout()"></app-nav-toolbar>
-        <router-outlet></router-outlet>
+        <div class="container-fluid">
+            <router-outlet></router-outlet>
+        </div>
     </mat-sidenav-content>
 </mat-sidenav-container>

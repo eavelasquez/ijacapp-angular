@@ -3,7 +3,7 @@
         <img src="assets/img/logo.png" class="img-fluid" alt="ijacapp">
     </div>
     <div fxFlexAlign="center">
-        <p class="h3 font-weight-normal text-primary">Tu usuario</p>
+        <p class="h3 font-weight-normal text-primary">Su usuario</p>
         <span class="font-weight-light text-muted">Por favor, confirme su usuario e ingrese su contraseña.</span>
         <mat-divider></mat-divider>
         <form (keyup.enter)="login(username, password)">
@@ -15,7 +15,7 @@
             </mat-form-field>
             <mat-error [textContent]="errorMessage"></mat-error>
             <button mat-raised-button color="primary" class="login-field text-uppercase" (click)="login(username, password)" type="submit">
-                Iniciar sesión
+                iniciar sesión
             </button>
         </form>
         <app-actions></app-actions>
