@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { StartComponent } from './start/start.component';
 import { UserManualComponent } from './user-manual/user-manual.component';
 import { ActionsComponent } from './actions/actions.component';
-import { MatIconModule } from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
