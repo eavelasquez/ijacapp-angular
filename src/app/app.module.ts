@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 // Angular Material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule } from '@angular/material/button';
 // Routing
 import { AppRoutingModule } from './app-routing.module';
 // Components
@@ -21,8 +20,7 @@ import { ComponentsModule } from './core/components/components.module';
     NavModule,
     ComponentsModule,
     AppRoutingModule,
-    HttpClientModule,
-    MatButtonModule
+    HttpClientModule
   ],
   providers: [
     // { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },

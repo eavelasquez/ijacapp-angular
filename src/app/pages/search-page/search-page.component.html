@@ -1,9 +1,9 @@
-<div class="row m-5">
+<div class="row m-md-5 mt-2">
     <div class="col-12">
-        <h3 mat-header class="text-uppercase pl-2 rounded border-left border-primary text-primary font-weight-light">Afiliados registrados</h3>
+        <h3 mat-header class="text-uppercase mb-3 pl-2 rounded border-left border-primary text-primary font-weight-light">Afiliados registrados</h3>
         <mat-form-field>
-            <mat-label>Afiliado</mat-label>
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+            <mat-label>Buscar</mat-label>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Afiliado">
         </mat-form-field>
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 

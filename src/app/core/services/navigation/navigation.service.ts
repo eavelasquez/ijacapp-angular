@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { NavRoute, getNavRoutes } from 'src/app/config/navRoutes.routes';
+import { NavRoute, getNavRoutes } from '../../../config/navRoutes.routes';
 
 @Injectable({
   providedIn: 'root'

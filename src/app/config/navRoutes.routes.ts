@@ -7,13 +7,13 @@ export interface NavRoute extends Route {
 }
 
 export const navRoutes: NavRoute[] = [
+    { title: 'Junta de Acción Comunal', icon: 'location_city', path: 'community-action',
+        loadChildren: () => import('../pages/community-action-page/community-action-page.module').then(m => m.CommunityActionPageModule) },
     { title: 'Afiliación', icon: 'person_add', path: 'affil',
         loadChildren: () => import('../pages/affil-page/affil-page.module').then(m => m.AffilPageModule) },
     { title: 'Búsquedas', icon: 'search', path: 'search',
         loadChildren: () => import('../pages/search-page/search-page.module').then(m => m.SearchPageModule) },
-    // { title: 'Comités', icon: '', path: 'commit', loadChildren: './pages//commit-page/commit-page.module#CommitPageModule' },
-    // { title: 'Asistencias', icon: '', path: 'assist', loadChildren: './pages/assist-page/assist-page.module#AssistPageModule' },
-    // { path: '', redirectTo: 'search', pathMatch: 'full' }
+    { path: '', redirectTo: 'search', pathMatch: 'full' }
 ];
 
 export function getNavRoutes(): NavRoute[] {

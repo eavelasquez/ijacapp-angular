@@ -13,17 +13,17 @@ export class AffilPageComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(36), Validators.pattern('')]],
-      surname: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(36), Validators.pattern('')]],
+      name: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(36), Validators.pattern('')]],
+      surname: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(36), Validators.pattern('')]],
       document: this.fb.group({
-        type: ['', Validators.required],
-        number: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(10), Validators.pattern('')]]
+        type: [null, Validators.required],
+        number: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(10), Validators.pattern('')]]
       }),
-      dateBorn: ['', Validators.required],
-      address: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(96), Validators.pattern('')]],
-      gender: ['', Validators.required],
-      telephone: ['', [Validators.required, Validators.minLength(7), Validators.maxLength(12), Validators.pattern('')]],
-      occupation: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(48), Validators.pattern('')]]
+      dateBorn: [null, Validators.required],
+      address: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(96), Validators.pattern('')]],
+      gender: [null, Validators.required],
+      telephone: [null, [Validators.required, Validators.minLength(7), Validators.maxLength(12), Validators.pattern('')]],
+      occupation: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(48), Validators.pattern('')]]
     });
   }
 
@@ -40,5 +40,7 @@ export class AffilPageComponent implements OnInit {
     if (this.form.invalid) { return ; }
     this.form.addControl('commit', this.commit);
   }
+
+  onClear() { this.form.reset(); }
 
 }
