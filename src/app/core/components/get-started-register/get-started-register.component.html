@@ -1,6 +1,6 @@
 <div class="d-md-flex flex-sm-row">
     <div class="col-sm-12 col-md-8 my-4">
-        <div class="mat-elevation-z4 ripple-container" matRipple>
+        <div class="mat-elevation-z4 ripple-container" (click)="open(content)" matRipple>
             <i class="material-icons">add</i>
         </div>
     </div>
@@ -15,3 +15,53 @@
         </div>
     </div>
 </div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title text-uppercase text-primary font-weight-light
+        " id="modal-basic-title">Junta de Acción Comunal</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="form">
+            <div class="form-row">
+                <div class="form-group col-sm-12 col-md-6">
+                    <label for="inputCode">Código</label>
+                    <input type="text" class="form-control" formControlName="code" id="inputCode" placeholder="Código">
+                </div>
+                <div class="form-group col-sm-12 col-md-6">
+                    <label for="inputName">Nombre</label>
+                    <input type="text" class="form-control" formControlName="name" id="inputName" placeholder="Nombre">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail">Correo electrónico</label>
+                <input type="email" class="form-control" formControlName="email" id="inputEmail" placeholder="Correo electrónico">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-sm-12 col-md-4">
+                    <label for="inputTelephone">Contacto</label>
+                    <input type="text" class="form-control" formControlName="telephone" id="inputTelephone" placeholder="Contacto">
+                </div>
+                <div class="form-group col-sm-12 col-md-8">
+                    <label for="selectDistrict">Barrio</label>
+                    <select class="form-control" formControlName="district" id="selectDistrict">
+                        <option selected>Seleccione</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Guardar</button>
+        </div>
+    </div>
+</ng-template>
+
+<pre>{{ form.value | json }}</pre>
+<pre>{{ form.status | json }}</pre>
