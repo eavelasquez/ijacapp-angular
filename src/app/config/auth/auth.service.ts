@@ -1,26 +1,32 @@
-// import { Injectable } from '@angular/core';
-// import { HttpClient } from '@angular/common/http';
-// import { StorageService } from '../core/services/storage/storage.service';
-// import { StorageKey } from '../core/services/storage/storage.enum';
-// import { HttpService } from '../core/services/http/http.service';
-// const { AUTH_TOKEN } = StorageKey;
+import { Injectable } from '@angular/core';
+import { StorageKey } from '../../core/services/storage/storage.enum';
+import { HttpClient } from '@angular/common/http';
+import { StorageService } from '../../core/services/storage/storage.service';
+import { URL_SERVER } from '../../../environments/environment';
+const { AUTH_TOKEN } = StorageKey;
 
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class AuthService extends HttpService {
-//   endpoint: any;
+@Injectable({
+    providedIn: 'root'
+})
+export class AuthService {
+    endPoint = '/auth';
+    token: string;
+    user: any;
+    redirectUrl: string;
 
-//   endPoint = 'auth';
-//   token: string;
-//   redirectUrl: string;
+    constructor(private http: HttpClient, private storage: StorageService) {
+        this.token = this.storage.read(AUTH_TOKEN) || '';
+    }
 
-//   constructor(http: HttpClient, private storage: StorageService) {
-//     super(http);
-//     this.token = this.storage.read(AUTH_TOKEN) || '';
-//   }
+    async login( auth: Auth ) {
+        const url = URL_SERVER + this.endPoint;
+        return this.http.post(url, auth).subscribe( res => {
+            console.log(res),
+            this.user = res;
+        } );
+    }
 
-//   public async mockLogin(email: string, password: string) {
+//   public async mockLogin() {
 //     try {
 //         if (!(email === 'user' && password === 'user')) {
 //             throw new Error(
@@ -47,4 +53,9 @@
 //   public isLogged(): boolean {
 //     return this.token.length > 0;
 //   }
-// }
+}
+
+export interface Auth {
+    username: string;
+    password: string;
+}

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { CommunityActionService } from '../../services/community-action.service';
+import { AuthService } from '../../../config/auth/auth.service';
 
 @Component({
   selector: 'app-get-started-register',
@@ -10,7 +12,9 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class GetStartedRegisterComponent implements OnInit {
   closeResult: string;
   form: FormGroup;
-  constructor(private modalService: NgbModal, private fb: FormBuilder) { }
+  constructor(private modalService: NgbModal, private fb: FormBuilder,
+              public communityActionService: CommunityActionService,
+              private authService: AuthService) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -20,6 +24,16 @@ export class GetStartedRegisterComponent implements OnInit {
       telephone: '',
       district: ''
     });
+    this.communityActionService.load();
+  }
+
+  register() {
+    console.log('Formulario: ' + this.form.value);
+    if (this.form.invalid) { return ; }
+    this.form.addControl('user', new FormControl(this.authService.user._id));
+    this.communityActionService.registerC(this.form.value).subscribe( res => {
+      console.log(res);
+    } );
   }
 
   open(content) {
