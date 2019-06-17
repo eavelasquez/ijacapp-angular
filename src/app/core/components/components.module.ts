@@ -19,6 +19,13 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MemberComponent } from './member/member.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BookComponent } from './book/book.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +34,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     ActionsComponent,
     GetStartedRegisterComponent,
     CommitteeComponent,
-    MemberComponent
+    MemberComponent,
+    BookComponent,
+    DialogComponent
   ],
   imports: [
     CommonModule,
@@ -40,8 +49,16 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     MatCardModule,
     ScrollingModule,
+    MatExpansionModule,
     DragDropModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTooltipModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatListModule
+  ],
+  entryComponents: [
+    DialogComponent
   ],
   exports: [
     StartComponent,
@@ -49,7 +66,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     ActionsComponent,
     GetStartedRegisterComponent,
     CommitteeComponent,
-    MemberComponent
+    MemberComponent,
+    BookComponent,
+    DialogComponent
   ]
 })
 export class ComponentsModule { }

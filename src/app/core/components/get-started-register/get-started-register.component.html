@@ -1,6 +1,6 @@
 <div class="d-md-flex flex-sm-row">
-    <div class="col-sm-12 col-md-8 my-4">
-        <div *ngIf="!communityActionService.community" class="mat-elevation-z4 ripple-container" (click)="open(content)" matRipple>
+    <div class="col-sm-12 col-md-5 col-lg-8 my-4">
+        <div matTooltip="Registra Junta de Acción Comunal" *ngIf="!communityActionService.community" class="mat-elevation-z4 ripple-container" (click)="open(content)" matRipple>
             <i class="material-icons">add</i>
         </div>
         <mat-card class="w-100" *ngFor="let info of communityActionService.community">
@@ -16,11 +16,11 @@
             </mat-card-content>
         </mat-card>
     </div>
-    <div class="col-sm-12 col-md-4 my-4">
-        <div *ngIf="!communityActionService.community" class="card border-warning align-baseline">
-            <div class="card-header bg-warning text-white font-weight-bold">¡Alerta!</div>
+    <div class="col-sm-12 col-md-7 col-lg-4 mt-5">
+        <div *ngIf="!communityActionService.community" class="card border-secondary align-baseline">
+            <div class="card-header bg-secondary text-white font-weight-bold">¡Alerta!</div>
             <div class="card-body p-4">
-                <ngb-alert [dismissible]="false" class="text-justify">
+                <ngb-alert type="secondary" [dismissible]="false" class="text-justify">
                     Recuerde registrar su Junta de Acción Comunal, es necesaria para hacer uso adecuado del sistema.
                 </ngb-alert>
             </div>
@@ -30,22 +30,18 @@
 
 <ng-template #content let-modal>
     <div class="modal-header">
-        <h4 class="modal-title text-uppercase text-primary font-weight-light
-        " id="modal-basic-title">Junta de Acción Comunal</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <h4 class="modal-title text-uppercase text-primary font-weight-light">Junta de Acción Comunal</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
         <form [formGroup]="form" (ngSubmit)="register()">
             <div class="form-row">
-                <div class="form-group col-sm-12 col-md-6">
-                    <label for="inputCode">Código</label>
-                    <input type="text" class="form-control" formControlName="code" id="inputCode" placeholder="Código">
-                </div>
-                <div class="form-group col-sm-12 col-md-6">
+                <div class="form-group col-sm-12">
                     <label for="inputName">Nombre</label>
                     <input type="text" class="form-control" formControlName="name" id="inputName" placeholder="Nombre">
+                    <mat-error>Hola</mat-error>
                 </div>
             </div>
             <div class="form-group">
@@ -67,8 +63,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Save click')">Cancelar</button>
-                <button type="submit" class="btn btn-outline-dark">Guardar</button>
+                <button type="button" class="btn btn-outline-secondary" (click)="modal.close()">Cancelar</button>
+                <button type="submit" class="btn btn-outline-primary">Guardar</button>
             </div>
         </form>
     </div>

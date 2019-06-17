@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import {FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms';
 import { CommunityActionService } from '../../services/community-action.service';
 import { AuthService } from '../../../config/auth/auth.service';
 
@@ -18,17 +18,16 @@ export class GetStartedRegisterComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      code: '',
-      name: '',
-      email: '',
-      telephone: '',
-      district: ''
+      name: [null, [Validators.minLength(12), Validators.maxLength(78), Validators.required]],
+      email: [null, [Validators.minLength(12), Validators.maxLength(48)]],
+      telephone: [null, [Validators.minLength(7), Validators.maxLength(14)]],
+      district: [null, [Validators.required]]
     });
-    this.communityActionService.load();
+    // this.communityActionService.load();
   }
 
   register() {
-    console.log('Formulario: ' + this.form.value);
+    console.log(this.form);
     if (this.form.invalid) { return ; }
     this.form.addControl('user', new FormControl(this.authService.user._id));
     this.communityActionService.registerC(this.form.value).subscribe( res => {
@@ -37,7 +36,7 @@ export class GetStartedRegisterComponent implements OnInit {
   }
 
   open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, {centered: true}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;

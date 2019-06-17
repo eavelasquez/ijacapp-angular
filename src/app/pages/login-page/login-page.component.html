@@ -8,11 +8,11 @@
         <mat-divider></mat-divider>
         <form [formGroup]="form" (keyup.enter)="login()" (ngSubmit)="login()">
             <mat-form-field class="login-field">
-                <input matInput placeholder="Usuario" name="username" formControlName="username" type="text" autocomplete="username" />
+                <input matInput placeholder="Usuario" formControlName="username" type="text" autocomplete="username" />
                 <!-- <mat-error *ngIf="usernameForm.invalid">{{getErrorMessage()}}</mat-error> -->
             </mat-form-field>
             <mat-form-field class="login-field">
-                <input matInput placeholder="Contraseña" name="password" formControlName="password" type="password" autocomplete="current-password" />
+                <input matInput placeholder="Contraseña" formControlName="password" type="password" autocomplete="current-password" />
             </mat-form-field>
             <mat-error [textContent]="errorMessage"></mat-error>
             <button mat-raised-button class="login-field text-uppercase bg-primary text-light" type="submit">
