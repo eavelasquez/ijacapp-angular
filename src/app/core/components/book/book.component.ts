@@ -21,10 +21,7 @@ export class BookComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(DialogComponent, {
-      data: {
-        animal: 'cat'
-      },
-      width: '450px'
+      width: '450px',
     });
 
     dialogRef.afterClosed().subscribe(result => {

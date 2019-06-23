@@ -1,0 +1,40 @@
+<h1 mat-dialog-title class="text-center text-primary text-uppercase">junta de acción comunal</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <div class="form-row">
+      <mat-form-field class="w-100">
+        <input matInput placeholder="Nombre" formControlName="name" required>
+        <mat-error *ngIf="nameForm.invalid">{{getErrorMessage(nameForm)}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field class="w-100">
+        <input matInput placeholder="Correo electrónico" formControlName="email" type="email">
+        <mat-error *ngIf="emailForm.invalid">{{getErrorMessage(emailForm)}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-sm-12 col-md-4">
+        <mat-form-field class="w-100">
+          <input matInput placeholder="Contacto" type="tel" formControlName="telephone" required>
+          <mat-icon matSuffix>phone</mat-icon>
+          <mat-error *ngIf="telephoneForm.invalid">{{getErrorMessage(telephoneForm)}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group col-sm-12 col-md-8">
+        <mat-form-field class="w-100">
+          <mat-label>Barrio</mat-label>
+          <mat-select formControlName="district" required>
+            <mat-option *ngFor="let district of districts" [value]="district._id">{{ district.name }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="districtForm.invalid">{{getErrorMessage(districtForm)}}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</div>
+<mat-divider></mat-divider>
+<mat-dialog-actions align="end">
+  <button mat-button mat-stroked-button mat-dialog-close>Cancelar</button>
+  <button mat-button mat-stroked-button color="primary" [mat-dialog-close]="true" (click)="createCommunity()" cdkFocusInitial>Guardar</button>
+</mat-dialog-actions>

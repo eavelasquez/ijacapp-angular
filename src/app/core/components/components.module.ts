@@ -23,9 +23,12 @@ import { BookComponent } from './book/book.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatListModule } from '@angular/material';
+import {MatBadgeModule, MatGridListModule, MatListModule, MatSelectModule} from '@angular/material';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { DialogComponent } from './dialog/dialog.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import { DialogFormComponent } from './dialog/dialog-form.component';
+import {MatStepperModule} from '@angular/material/stepper';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,8 @@ import { DialogComponent } from './dialog/dialog.component';
     CommitteeComponent,
     MemberComponent,
     BookComponent,
-    DialogComponent
+    DialogComponent,
+    DialogFormComponent
   ],
   imports: [
     CommonModule,
@@ -55,10 +59,16 @@ import { DialogComponent } from './dialog/dialog.component';
     MatTooltipModule,
     MatDialogModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    FlexLayoutModule,
+    MatSelectModule,
+    MatBadgeModule,
+    MatGridListModule,
+    MatStepperModule
   ],
   entryComponents: [
-    DialogComponent
+    DialogComponent,
+    DialogFormComponent
   ],
   exports: [
     StartComponent,
@@ -68,7 +78,8 @@ import { DialogComponent } from './dialog/dialog.component';
     CommitteeComponent,
     MemberComponent,
     BookComponent,
-    DialogComponent
+    DialogComponent,
+    DialogFormComponent
   ]
 })
 export class ComponentsModule { }

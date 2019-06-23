@@ -5,7 +5,7 @@ import { DialogData } from '../book/book.component';
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.scss']
+  styles: []
 })
 export class DialogComponent implements OnInit {
 

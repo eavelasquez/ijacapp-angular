@@ -9,6 +9,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class CommitteeComponent implements OnInit {
   form: FormGroup;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
   todo = [
     'Get to work',
     'Pick up groceries',
@@ -30,6 +32,12 @@ export class CommitteeComponent implements OnInit {
       code: [null, [Validators.required]],
       name: [null, Validators.required],
       description: [null]
+    });
+    this.firstFormGroup = this.fb.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this.fb.group({
+      secondCtrl: ['', Validators.required]
     });
   }
 

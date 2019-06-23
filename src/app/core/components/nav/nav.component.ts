@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavRoute } from 'src/app/config/navRoutes.routes';
-// import { AuthService } from '../../../auth/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { NavigationService } from '../../services/navigation/navigation.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class NavComponent implements OnInit {
   isOpen = true;
   constructor(
     private navigationService: NavigationService,
-    // private authService: AuthService,
+    private authService: AuthService,
     private router: Router,
   ) {}
 
@@ -34,8 +34,8 @@ export class NavComponent implements OnInit {
   }
 
   public logout() {
-    // this.authService.logout();
-    // this.router.navigate(['login'], { replaceUrl: true });
+    this.authService.userLogout();
+    this.router.navigate(['login'], { replaceUrl: true });
   }
 
 }

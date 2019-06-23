@@ -1,23 +1,11 @@
-<div class="d-md-flex flex-sm-row">
+<div class="d-md-flex flex-sm-row" *ngIf="!communityActionService.community">
     <div class="col-sm-12 col-md-5 col-lg-8 my-4">
-        <div matTooltip="Registra Junta de Acción Comunal" *ngIf="!communityActionService.community" class="mat-elevation-z4 ripple-container" (click)="open(content)" matRipple>
+        <div matTooltip="Registra Junta de Acción Comunal" class="mat-elevation-z4 ripple-container" (click)="openDialog()" matRipple>
             <i class="material-icons">add</i>
         </div>
-        <mat-card class="w-100" *ngFor="let info of communityActionService.community">
-            <mat-card-header>
-                <mat-card-title>{{ info.name | titlecase }}</mat-card-title>
-                <mat-card-subtitle>{{ info.code }}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"> Correo electrónico: {{ info.email }}</li>
-                    <li class="list-group-item"> Teléfono: {{ info.telephone }}</li>
-                </ul>
-            </mat-card-content>
-        </mat-card>
     </div>
     <div class="col-sm-12 col-md-7 col-lg-4 mt-5">
-        <div *ngIf="!communityActionService.community" class="card border-secondary align-baseline">
+        <div class="card border-secondary align-baseline">
             <div class="card-header bg-secondary text-white font-weight-bold">¡Alerta!</div>
             <div class="card-body p-4">
                 <ngb-alert type="secondary" [dismissible]="false" class="text-justify">
@@ -28,47 +16,25 @@
     </div>
 </div>
 
-<ng-template #content let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title text-uppercase text-primary font-weight-light">Junta de Acción Comunal</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <form [formGroup]="form" (ngSubmit)="register()">
-            <div class="form-row">
-                <div class="form-group col-sm-12">
-                    <label for="inputName">Nombre</label>
-                    <input type="text" class="form-control" formControlName="name" id="inputName" placeholder="Nombre">
-                    <mat-error>Hola</mat-error>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputEmail">Correo electrónico</label>
-                <input type="email" class="form-control" formControlName="email" id="inputEmail" placeholder="Correo electrónico">
-            </div>
-            <div class="form-row">
-                <div class="form-group col-sm-12 col-md-4">
-                    <label for="inputTelephone">Contacto</label>
-                    <input type="text" class="form-control" formControlName="telephone" id="inputTelephone" placeholder="Contacto">
-                </div>
-                <div class="form-group col-sm-12 col-md-8">
-                    <label for="selectDistrict">Barrio</label>
-                    <select class="form-control" formControlName="district" id="selectDistrict">
-                        <option>San josé la Cima</option>
-                        <option>San pablo</option>
-                        <option>Jardín</option>
-                    </select>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" (click)="modal.close()">Cancelar</button>
-                <button type="submit" class="btn btn-outline-primary">Guardar</button>
-            </div>
-        </form>
-    </div>
-</ng-template>
-
-<pre>{{ form.value | json }}</pre>
-<pre>{{ form.status | json }}</pre>
+<div class="d-md-flex flex-sm-row" *ngIf="communityActionService.community">
+  <div class="col-sm-12 col-md-10 my-4">
+    <mat-card class="w-100" *ngFor="let info of communityActionService.community">
+      <mat-card-header>
+        <mat-card-title class="text-primary">{{ info.name | titlecase }}</mat-card-title>
+        <mat-card-subtitle>{{ info.code }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-grid-list cols="3" rowHeight="40px">
+          <mat-grid-tile mat-subheader>Afiliados <span class="ml-2" [matBadge]="info.affiliates.length" matBadgeOverlap="false"></span></mat-grid-tile>
+          <mat-grid-tile mat-subheader>Comités <span class="ml-2" [matBadge]="info.committees.length" matBadgeOverlap="false"></span></mat-grid-tile>
+          <mat-grid-tile mat-subheader>Miembros <span class="ml-2" [matBadge]="info.members.length" matBadgeOverlap="false"></span></mat-grid-tile>
+        </mat-grid-list>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"> Correo electrónico: {{ info.email }}</li>
+          <li class="list-group-item"> Teléfono: {{ info.telephone }}</li>
+        </ul>
+        <p class="text-right text-muted">Fecha: {{ date }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

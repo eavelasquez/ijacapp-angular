@@ -13,7 +13,7 @@ export const navRoutes: NavRoute[] = [
         loadChildren: () => import('../pages/affil-page/affil-page.module').then(m => m.AffilPageModule) },
     { title: 'Búsquedas', icon: 'search', path: 'search',
         loadChildren: () => import('../pages/search-page/search-page.module').then(m => m.SearchPageModule) },
-    { path: '', redirectTo: 'search', pathMatch: 'full' }
+    { path: '', redirectTo: 'community-action', pathMatch: 'full' }
 ];
 
 export function getNavRoutes(): NavRoute[] {

@@ -21,4 +21,9 @@ export class CommunityActionService {
       console.log(this.community);
     });
   }
+
+  showDistrict() {
+    const url = URL_SERVER + '/district';
+    return this.http.get(url);
+  }
 }
