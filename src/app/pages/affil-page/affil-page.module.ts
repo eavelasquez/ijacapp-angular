@@ -13,6 +13,8 @@ import { AffilPageRoutingModule } from './affil-page-routing.module';
 import { AffilPageComponent } from './affil-page.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatNativeDateModule, MatRadioModule} from '@angular/material';
 
 
 @NgModule({
@@ -29,7 +31,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     NgbModule,
     FormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule
   ]
 })
 export class AffilPageModule { }

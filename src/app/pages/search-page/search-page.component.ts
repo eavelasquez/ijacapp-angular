@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import {AffilService} from '../../core/services/affil/affil.service';
 
 export interface PeriodicElement {
   name: string;
@@ -26,11 +27,15 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./search-page.component.scss']
 })
 export class SearchPageComponent implements OnInit {
-  constructor() { }
+  constructor(private affilService: AffilService) { }
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  dataSource: MatTableDataSource<any>;
+  affils: any;
   ngOnInit() {
+    this.affilService.showAffils().subscribe((res: any) => {
+      this.affils = res;
+      // this.dataSource = new MatTableDataSource(res);
+    });
   }
 
   applyFilter(filterValue: string) {

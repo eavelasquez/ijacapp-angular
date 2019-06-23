@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import {FormGroup, FormBuilder, Validators, FormControl, AbstractControl, FormArray} from '@angular/forms';
+import {CommitteeService} from '../../core/services/committee/committee.service';
+import {AffilService} from '../../core/services/affil/affil.service';
 
 @Component({
   selector: 'app-affil-page',
@@ -8,8 +10,11 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 })
 export class AffilPageComponent implements OnInit {
   form: FormGroup;
-  commit: FormControl = new FormControl('');
-  constructor(private fb: FormBuilder) { }
+  committees: any;
+  public commit: any;
+  selectedCommits = [];
+  selectedCommit;
+  constructor(private fb: FormBuilder, private committeeService: CommitteeService, private affilService: AffilService) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -23,24 +28,45 @@ export class AffilPageComponent implements OnInit {
       address: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(96), Validators.pattern('')]],
       gender: [null, Validators.required],
       telephone: [null, [Validators.required, Validators.minLength(7), Validators.maxLength(12), Validators.pattern('')]],
-      occupation: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(48), Validators.pattern('')]]
+      occupation: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(48), Validators.pattern('')]],
+      commits: this.fb.array([])
+    });
+    this.committeeService.showCommittees().subscribe(res => {
+      console.log(res);
+      this.committees = res;
     });
   }
 
-  get name() { return this.form.get('name'); }
-  get surname() { return this.form.get('surname'); }
-  get document() { return this.form.get('document') as FormGroup; }
-  get dateBorn() { return this.form.get('dateBorn'); }
-  get address() { return this.form.get('address'); }
-  get gender() { return this.form.get('gender'); }
-  get telephone() { return this.form.get('telephone'); }
-  get occupation() { return this.form.get('occupation'); }
+  get nameForm() { return this.form.get('name'); }
+  get surnameForm() { return this.form.get('surname'); }
+  get documentForm() { return this.form.get('document') as FormGroup; }
+  get dateBornForm() { return this.form.get('dateBorn'); }
+  get addressForm() { return this.form.get('address'); }
+  get genderForm() { return this.form.get('gender'); }
+  get telephoneForm() { return this.form.get('telephone'); }
+  get occupationForm() { return this.form.get('occupation'); }
+  get commitsForm() { return this.form.get('commits') as FormArray; }
 
   onSubmit() {
     if (this.form.invalid) { return ; }
-    this.form.addControl('commit', this.commit);
+    this.affilService.createAffil(this.form.value);
   }
 
   onClear() { this.form.reset(); }
 
+  private addCheckboxes(id: string) {
+    const control = new FormControl(id);
+    (this.form.controls.commits as FormArray).push(control);
+    // this.committees.map((o, i) => {
+    //   const control = new FormControl(o._id); // if first item set to true, else false
+    //   (this.form.controls.commits as FormArray).push(control);
+    // });
+    // console.log(this.form.value);
+  }
+
+  onNgModelChange($event) {
+    console.log($event);
+    this.selectedCommit = $event;
+    (this.form.controls.commits as FormArray).push(this.selectedCommit);
+  }
 }

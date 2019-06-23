@@ -1,76 +1,91 @@
 <div class="row m-md-5 mt-2">
     <div class="col-sm-12 col-md-8">
-        <p mat-header class="h3 text-uppercase mb-3 pl-2 rounded border-left border-primary text-primary font-weight-light">Formulario de afiliación</p>
         <mat-card>
-            <mat-card-actions>
-                <button type="button" class="close" aria-label="Close" (click)="onClear()"><span aria-hidden="true">&times;</span></button>
-            </mat-card-actions>
+            <button type="button" class="close" aria-label="Close" (click)="onClear()"><span aria-hidden="true">&times;</span></button>
+            <mat-card-header>
+              <mat-card-title class="text-primary text-uppercase">Formulario de afiliación</mat-card-title>
+            </mat-card-header>
             <mat-card-content>
                 <form [formGroup]="form" autocomplete="off">
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputName">Nombres</label>
-                            <input type="text" class="form-control" id="inputName" formControlName="name" placeholder="Nombres" autofocus>
+                          <mat-form-field class="w-100">
+                            <input matInput formControlName="name" placeholder="Nombre" type="text" required>
+                            <mat-error></mat-error>
+                          </mat-form-field>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputSurname">Apellidos</label>
-                            <input type="text" class="form-control" id="inputSurname" formControlName="surname" placeholder="Apellidos">
+                          <mat-form-field class="w-100">
+                            <input matInput formControlName="surname" placeholder="Apellido" type="text" required>
+                            <mat-error></mat-error>
+                          </mat-form-field>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-2" formGroupName="document">
-                            <label for="inputType">Tipo</label>
-                            <select class="form-control" id="inputType" formControlName="type">
-                                <option>CC</option>
-                                <option>TI</option>
-                            </select>
+                          <mat-form-field class="w-100">
+                            <mat-label>Tipo</mat-label>
+                            <mat-select formControlName="type" required>
+                              <mat-option value="TI">TI</mat-option>
+                              <mat-option value="CC">CC</mat-option>
+                            </mat-select>
+                          </mat-form-field>
                         </div>
                         <div class="form-group col-md-4" formGroupName="document">
-                            <label for="inputDocument">Documento</label>
-                            <input type="text" class="form-control" id="inputDocument" formControlName="number" placeholder="Documento">
+                          <mat-form-field class="w-100">
+                            <input matInput formControlName="number" placeholder="Documento" type="text" required>
+                            <mat-error></mat-error>
+                          </mat-form-field>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputdateBorn">Fecha de nacimiento</label>
-                            <div class="input-group">
-                                <input class="form-control" placeholder="yyyy-mm-dd" formControlName="dateBorn" ngbDatepicker #d="ngbDatepicker">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
-                                </div>
-                            </div>
+                          <mat-form-field class="w-100">
+                            <input matInput [matDatepicker]="picker" formControlName="dateBorn" placeholder="Fecha de nacimiento" required>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                          </mat-form-field>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputAddress">Dirección</label>
-                        <input type="text" class="form-control" id="inputAddress" formControlName="address" placeholder="Cra 45 #41-23">
+                        <mat-form-field class="w-100">
+                          <input matInput formControlName="address" placeholder="Dirección" type="text" required>
+                          <mat-error></mat-error>
+                        </mat-form-field>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="inputGender">Género</label>
-                            <select class="form-control" id="inputGender" formControlName="gender">
-                                <option>Masculino</option>
-                                <option>Femenino</option>
-                            </select>
+                        <div class="form-group col-md-4 text-center">
+                          <mat-radio-group aria-label="Seleccione un género" formControlName="gender" required>
+                            <mat-radio-button class="mr-3" value="Masculino">M</mat-radio-button>
+                            <mat-radio-button class="ml-3" value="Femenino">F</mat-radio-button>
+                          </mat-radio-group>
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="inputTelephone">Teléfono</label>
-                            <input type="text" class="form-control" id="inputTelephone" formControlName="telephone" placeholder="Teléfono">
+                            <mat-form-field class="w-100">
+                                <input matInput formControlName="telephone" placeholder="Teléfono" type="tel" required>
+                              <mat-error></mat-error>
+                            </mat-form-field>
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="inputOccupation">Ocupación</label>
-                            <input type="text" class="form-control" id="inputOccupation" formControlName="occupation" placeholder="Ocupación">
+                            <mat-form-field class="w-100">
+                              <input matInput formControlName="occupation" placeholder="Ocupación" type="text" required>
+                              <mat-error></mat-error>
+                            </mat-form-field>
                         </div>
                     </div>
                 </form>
             </mat-card-content>
+            <mat-card-actions align="end">
+              <button mat-button matStepperNext type="button" color="accent">Cancelar</button>
+              <button mat-button mat-stroked-button color="primary" class="px-4" type="submit" (click)="onSubmit()">Guardar</button>
+            </mat-card-actions>
         </mat-card>
     </div>
     <div class="col-sm-12 col-md-4">
-        <p mat-header class="h3 text-uppercase mb-3 pl-2 rounded border-left border-primary text-primary font-weight-light">Comités</p>
+        <p mat-header class="mat-h2 text-uppercase mt-2 mb-0 pl-3 text-primary">Comités</p>
         <mat-list>
             <mat-divider></mat-divider>
-            <mat-selection-list #commit>
-                <mat-list-option *ngFor="let item of [1, 1, 1, 1, 1, 1]; let i = index">
-                    <mat-icon mat-list-icon>folder_shared</mat-icon>{{ i }}
+            <mat-selection-list [(ngModel)]="selectedCommits" (ngModelChange)="onNgModelChange($event)">
+                <mat-list-option *ngFor="let item of committees" [value]="item._id">
+                    <mat-icon mat-list-icon>group</mat-icon>{{ item.name | titlecase }}
                 </mat-list-option>
             </mat-selection-list>
         </mat-list>
@@ -79,10 +94,6 @@
             <button mat-icon-button class="mt-2 ml-2 text-primary"><i class="material-icons">arrow_forward</i></button>
         </div>
     </div>
-    <div class="col-sm-12 text-right mt-3">
-        <button type="submit" class="btn btn-outline-primary btn-sm px-5" (click)="onSubmit()">Guardar</button>
-    </div>
 </div>
 <pre>{{ form.value | json }}</pre>
 <pre>{{ form.status | json }}</pre>
-<p>Options selected: {{ commit.selectedOptions.selected.length }}</p>
