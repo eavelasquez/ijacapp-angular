@@ -1,3 +1,19 @@
-<p>
-    user-manual works!
-</p>
+<div class="user-page">
+  <div fxLayout="row" fxLayoutAlign="space-around center" class="mt-2 ml-4">
+    <div fxFlex>
+      <a mat-icon-button [routerLink]="['/start']">
+        <mat-icon aria-label="back">arrow_back</mat-icon>
+      </a>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row mat-elevation-z24 p-4 my-4 rounded">
+      <div class="col-sm-12 col-md-6 text-center rounded" *ngFor="let feature of dataFeatures" [ngStyle]="{'background': feature.color}">
+        <img [src]="feature.img" class="img-fluid" alt="image" [ngStyle]="{'width': feature.sizeImg}">
+        <p class="text-monospace text-uppercase font-weight-regular text-primary">{{feature.title}}</p>
+        <p class="mat-h2 font-weight-light text-dark">{{feature.subtitle | uppercase}}</p>
+        <p class="text-justify px-2 my-2">{{feature.text}}</p>
+      </div>
+    </div>
+  </div>
+</div>

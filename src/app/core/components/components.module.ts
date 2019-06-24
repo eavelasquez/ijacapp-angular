@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 // Components
 import { StartComponent } from './start/start.component';
 import { UserManualComponent } from './user-manual/user-manual.component';
-import { ActionsComponent } from './actions/actions.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -23,7 +22,7 @@ import { BookComponent } from './book/book.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
-import {MatBadgeModule, MatGridListModule, MatListModule, MatSelectModule} from '@angular/material';
+import {MatBadgeModule, MatGridListModule, MatListModule, MatSelectModule, MatTableModule} from '@angular/material';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { DialogComponent } from './dialog/dialog.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -34,7 +33,6 @@ import {MatStepperModule} from '@angular/material/stepper';
   declarations: [
     StartComponent,
     UserManualComponent,
-    ActionsComponent,
     GetStartedRegisterComponent,
     CommitteeComponent,
     MemberComponent,
@@ -64,7 +62,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatSelectModule,
     MatBadgeModule,
     MatGridListModule,
-    MatStepperModule
+    MatStepperModule,
+    MatTableModule
   ],
   entryComponents: [
     DialogComponent,
@@ -73,7 +72,6 @@ import {MatStepperModule} from '@angular/material/stepper';
   exports: [
     StartComponent,
     UserManualComponent,
-    ActionsComponent,
     GetStartedRegisterComponent,
     CommitteeComponent,
     MemberComponent,
