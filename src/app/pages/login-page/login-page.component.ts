@@ -20,7 +20,7 @@ export class LoginPageComponent implements OnInit {
       username: [null, [Validators.required, Validators.minLength(4), Validators.maxLength(24),
         Validators.pattern('[A-Z,a-z, ,-?[0-9]*(\\.[0-9]+)?]*')]],
       password: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(16),
-        ]] // Validators.pattern('^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{6,16}$')
+        Validators.pattern('^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{6,16}$')]]
     });
   }
 
@@ -28,6 +28,7 @@ export class LoginPageComponent implements OnInit {
   get passwordForm() { return this.form.get('password'); }
 
   ngOnInit() {
+    this.errorMessage = '';
     if (this.authService.isLogged()) {
       this.navigateTo();
     }
@@ -71,7 +72,7 @@ export class LoginPageComponent implements OnInit {
 
   getErrorMessagePassword() {
     return this.passwordForm.hasError('required') ? 'Campo obligatorio'
-      : this.passwordForm.hasError('maxlength') ? 'Máximo 12 caracteres'
+      : this.passwordForm.hasError('maxlength') ? 'Máximo 16 caracteres'
         : this.passwordForm.hasError('minlength') ? 'Mínimo 6 caracteres'
           : this.passwordForm.hasError('pattern') ? 'Al menos un número, una mayúscula y una minúscula. Sin caracteres especiales'
             : '';

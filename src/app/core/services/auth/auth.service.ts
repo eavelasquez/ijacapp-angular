@@ -17,7 +17,7 @@ export class AuthService {
     redirectUrl: string;
 
     constructor(private http: HttpClient, private storage: StorageService) {
-        this.token = this.storage.read(AUTH_TOKEN) || '';
+      this.token = this.storage.read(AUTH_TOKEN) || '';
     }
 
     public async userLogin(auth: Auth) {
@@ -31,7 +31,7 @@ export class AuthService {
           }));
         } catch (error) {
           console.error('Error durante la petición login', error);
-          return Promise.reject(error);
+          return Promise.reject(error.message);
         }
     }
 

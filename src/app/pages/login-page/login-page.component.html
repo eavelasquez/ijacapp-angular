@@ -7,7 +7,7 @@
     <span class="font-weight-light text-muted">Por favor, ingrese los siguientes datos.</span>
     <mat-divider></mat-divider>
     <!-- Form -->
-    <form [formGroup]="form" (keyup.enter)="login()" (ngSubmit)="login()">
+    <form [formGroup]="form" (ngSubmit)="login()">
       <mat-form-field class="login-field">
         <input matInput placeholder="Usuario" formControlName="username" type="text" autocomplete="username" required/>
         <mat-error *ngIf="usernameForm.invalid">{{getErrorMessageUsername()}}</mat-error>
@@ -29,7 +29,6 @@
         <a mat-icon-button [routerLink]="['/start']">
           <mat-icon aria-label="back">arrow_back</mat-icon>
         </a>
-        <!-- <a mat-button class="text-decoration-none" [routerLink]="['/settings']">Ajustes</a> -->
       </div>
     </div>
   </div>

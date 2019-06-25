@@ -5,8 +5,11 @@ import { StorageKey } from './storage.enum';
   providedIn: 'root'
 })
 export class StorageService {
+
   private storage: Storage;
-  constructor() { this.storage = localStorage; }
+  constructor() {
+    this.storage = localStorage;
+  }
 
   public save(key: StorageKey, value: any) {
       value = JSON.stringify(value);
@@ -18,7 +21,11 @@ export class StorageService {
       return JSON.parse(value);
   }
 
-  public remove(key: StorageKey) { return this.storage.removeItem(key); }
+  public remove(key: StorageKey) {
+    return this.storage.removeItem(key);
+  }
 
-  public clear() { this.storage.clear(); }
+  public clear() {
+    this.storage.clear();
+  }
 }
