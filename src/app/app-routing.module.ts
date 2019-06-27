@@ -7,12 +7,12 @@ import { UserManualComponent } from './core/components/user-manual/user-manual.c
 // Config - Routes
 import { navRoutes } from './config/navRoutes.routes';
 // Guards
-// import { AuthGuard } from './auth/auth.guard';
+import { AuthGuard } from './core/services/auth/auth.guard';
 
 const routes: Routes = [
   { path: 'start', component: StartComponent },
   { path: 'login', loadChildren: () => import('./pages/login-page/login-page.module').then(m => m.LoginPageModule) },
-  { path: 'dashboard', component: NavComponent, children: navRoutes }, // canActivateChild: [AuthGuard], canActivate: [AuthGuard]
+  { path: 'dashboard', component: NavComponent, children: navRoutes, canActivateChild: [AuthGuard], canActivate: [AuthGuard] },
   { path: 'user-manual', component: UserManualComponent },
   { path: '**', redirectTo: 'start' }
 ];
