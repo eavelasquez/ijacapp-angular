@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators, FormControl, AbstractControl, FormArray} from '@angular/forms';
 import {CommitteeService} from '../../core/services/committee/committee.service';
-import {AffilService} from '../../core/services/affil/affil.service';
+import { AffilService } from '../../core/services/affil/affil.service';
 
 @Component({
   selector: 'app-affil-page',

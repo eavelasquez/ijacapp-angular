@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import {CommitteeService} from '../../services/committee/committee.service';
-import {AffilService} from '../../services/affil/affil.service';
+import { CommitteeService } from '../../services/committee/committee.service';
+import { AffilService } from '../../services/affil/affil.service';
 
 @Component({
   selector: 'app-committee',
@@ -64,6 +64,8 @@ export class CommitteeComponent implements OnInit {
     }
   }
 
-  onClear() { this.form.reset(); }
+  onClear() {
+    this.form.reset();
+  }
 
 }
