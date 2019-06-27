@@ -11,12 +11,14 @@ export class CommunityActionService {
   community: any;
   registerC(community) {
     const url = URL_SERVER + '/community-action';
-    return this.http.post(url, community);
+    return this.http.post(url, community).subscribe(res => {
+      console.log(res);
+    });
   }
 
-  load() {
+  async load() {
     const url = URL_SERVER + '/community-action';
-    return this.http.get(url).subscribe(data => {
+    return await this.http.get(url).subscribe(data => {
       this.community = data;
       console.log(this.community);
     });

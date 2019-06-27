@@ -20,7 +20,7 @@ export class LoginPageComponent implements OnInit {
       username: [null, [Validators.required, Validators.minLength(4), Validators.maxLength(24),
         Validators.pattern('[A-Z,a-z, ,-?[0-9]*(\\.[0-9]+)?]*')]],
       password: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(16),
-        Validators.pattern('^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{6,16}$')]]
+        ]] // Validators.pattern('^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{6,16}$')
     });
   }
 

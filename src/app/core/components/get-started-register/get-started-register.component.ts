@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommunityActionService } from '../../services/community-action.service';
 import { MatDialog } from '@angular/material';
 import { DialogFormComponent } from '../dialog/dialog-form.component';
+import {AuthService} from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-get-started-register',
@@ -11,10 +12,15 @@ import { DialogFormComponent } from '../dialog/dialog-form.component';
 export class GetStartedRegisterComponent implements OnInit {
 
   date: number = new Date().getFullYear();
-  constructor(public communityActionService: CommunityActionService, public dialog: MatDialog) { }
+  user: boolean;
+  constructor(public communityActionService: CommunityActionService, public dialog: MatDialog,
+              private authService: AuthService) {
+  }
 
   ngOnInit() {
     this.communityActionService.load();
+    this.user = this.authService.user;
+    console.log(this.user);
   }
 
   openDialog(): void {

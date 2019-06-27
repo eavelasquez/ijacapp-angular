@@ -1,4 +1,4 @@
-<div class="d-md-flex flex-sm-row" *ngIf="!communityActionService.community">
+<div class="d-md-flex flex-sm-row" *ngIf="!user">
     <div class="col-sm-12 col-md-5 col-lg-8 my-4">
         <div matTooltip="Registra Junta de Acción Comunal" class="mat-elevation-z4 ripple-container" (click)="openDialog()" matRipple>
             <i class="material-icons">add</i>
@@ -16,7 +16,7 @@
     </div>
 </div>
 
-<div class="d-md-flex flex-sm-row" *ngIf="communityActionService.community">
+<div class="d-md-flex flex-sm-row" *ngIf="user">
   <div class="col-sm-12 col-md-10 my-4">
     <mat-card class="w-100" *ngFor="let info of communityActionService.community">
       <mat-card-header>

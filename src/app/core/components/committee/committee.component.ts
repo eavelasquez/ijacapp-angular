@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import {CommitteeService} from '../../services/committee/committee.service';
+import {AffilService} from '../../services/affil/affil.service';
 
 @Component({
   selector: 'app-committee',
@@ -13,21 +14,15 @@ export class CommitteeComponent implements OnInit {
   isOptional = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
-  todo = [
-    'Get to work',
-    'Pick up groceries',
-    'Go home',
-    'Fall asleep'
-  ];
+  affiliatesCommit = [];
 
-  done = [
-    'Get up',
-    'Brush teeth',
-    'Take a shower',
-    'Check e-mail',
-    'Walk dog'
-  ];
-  constructor(private fb: FormBuilder, private committeeService: CommitteeService) { }
+  affiliates = [];
+  constructor(private fb: FormBuilder, private committeeService: CommitteeService, private affilService: AffilService) {
+    affilService.showAffils().subscribe((value: any) => {
+      console.log('Afiliados', value);
+      this.affiliates = value._id;
+    });
+  }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -38,8 +33,14 @@ export class CommitteeComponent implements OnInit {
   }
 
   createCommittee() {
-    this.committeeService.createCommittee(this.form.value);
+    return this.committeeService.createCommittee(this.form.value);
   }
+
+  // createCommitteeAffils() {
+  //   this.createCommittee().then(value => {
+  //     this.committeeService.registerAffiliates(value, this.affiliatesCommit);
+  //   });
+  // }
 
   get codeForm() { return this.form.get('code'); }
   get nameForm() { return this.form.get('name'); }
@@ -58,8 +59,8 @@ export class CommitteeComponent implements OnInit {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
       transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
-      console.log(this.done);
-      console.log(this.todo);
+      console.log(this.affiliatesCommit);
+      console.log(this.affiliates);
     }
   }
 

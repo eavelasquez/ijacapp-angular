@@ -25,7 +25,7 @@ export class AuthService {
         try {
           return await this.http.post(url, auth).pipe(map((res: any) => {
             this.token = res.token;
-            this.user = res;
+            this.user = res.validate;
             this.storage.save(StorageKey.AUTH_TOKEN, this.token);
             return this.redirectUrl;
           }));
