@@ -9,6 +9,7 @@ import { SearchPageComponent } from './search-page.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {MatPaginatorModule, MatSortModule} from '@angular/material';
 
 @NgModule({
   declarations: [SearchPageComponent],
@@ -18,7 +19,9 @@ import { MatInputModule } from '@angular/material/input';
     NgbModule,
     MatTableModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatPaginatorModule,
+    MatSortModule
   ]
 })
 export class SearchPageModule { }

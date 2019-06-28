@@ -3,7 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import {AffilService} from '../../core/services/affil/affil.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import {merge, Observable, of as observableOf} from 'rxjs';
+import { merge, Observable, of as observableOf } from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 
 @Component({
@@ -12,7 +12,7 @@ import {catchError, map, startWith, switchMap} from 'rxjs/operators';
   styleUrls: ['./search-page.component.scss']
 })
 export class SearchPageComponent implements AfterViewInit, OnInit {
-  
+
   displayedColumns: string[] = ['name', 'surname', 'telephone', 'address', 'gender', 'occupation', 'dateBorn'];
   dataSource: MatTableDataSource<any>;
   affils: any;
@@ -21,20 +21,20 @@ export class SearchPageComponent implements AfterViewInit, OnInit {
   isLoadingResults = true;
   isRateLimitReached = false;
 
-  @ViewChild(MatPaginator, {statis: false}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   constructor(private affilService: AffilService) { }
 
   ngOnInit() {
-    this.affilService.getAffils().subscribe((res: any) => {
+    this.affilService.showAffils().subscribe((res: any) => {
       this.affils = res;
-      // this.dataSource = new MatTableDataSource(res);
+      this.dataSource = new MatTableDataSource(res);
     });
   }
 
   ngAfterViewInit(): void {
-    this.affilService.getAffils();
+    this.affilService.showAffils();
 
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
     merge(this.sort.sortChange, this.paginator.page)
@@ -42,9 +42,9 @@ export class SearchPageComponent implements AfterViewInit, OnInit {
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
-          return this.affilService.getAffils();
+          return this.affilService.showAffils();
         }),
-        map(data => {
+        map((data: any) => {
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
           this.resultsLength = data.total_count;

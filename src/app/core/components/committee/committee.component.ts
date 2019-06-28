@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { CommitteeService } from '../../services/committee/committee.service';
-import { AffilService } from '../../services/affil/affil.service';
+import {FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import {CommitteeService} from '../../services/committee/committee.service';
+import {AffilService} from '../../services/affil/affil.service';
 
 @Component({
   selector: 'app-committee',
@@ -10,17 +10,16 @@ import { AffilService } from '../../services/affil/affil.service';
   styleUrls: ['./committee.component.scss']
 })
 export class CommitteeComponent implements OnInit {
+
   form: FormGroup;
   isOptional = true;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-  affiliatesCommit = [];
-
-  affiliates = [];
+  affiliatesList = [];
+  affiliatesCommitList = [];
   constructor(private fb: FormBuilder, private committeeService: CommitteeService, private affilService: AffilService) {
     affilService.showAffils().subscribe((value: any) => {
-      console.log('Afiliados', value);
-      this.affiliates = value._id;
+      for (const affil of value) {
+        this.affiliatesList.push(affil);
+      }
     });
   }
 
@@ -33,14 +32,20 @@ export class CommitteeComponent implements OnInit {
   }
 
   createCommittee() {
-    return this.committeeService.createCommittee(this.form.value);
+    return this.committeeService.createCommittee(this.form.value).then(() => {
+      this.onClear();
+    });
   }
 
-  // createCommitteeAffils() {
-  //   this.createCommittee().then(value => {
-  //     this.committeeService.registerAffiliates(value, this.affiliatesCommit);
-  //   });
-  // }
+  createCommitteeAffils() {
+    const result: any = this.affiliatesCommitList.map(obj => obj._id);
+    console.log('error', this.form.value);
+    this.form.addControl('affiliates', this.fb.array(result));
+    console.log(this.form.value);
+    this.createCommittee().then(value => {
+      console.log(value);
+    });
+  }
 
   get codeForm() { return this.form.get('code'); }
   get nameForm() { return this.form.get('name'); }
@@ -59,13 +64,11 @@ export class CommitteeComponent implements OnInit {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
       transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
-      console.log(this.affiliatesCommit);
-      console.log(this.affiliates);
+      console.log(this.affiliatesList);
+      console.log(this.affiliatesCommitList);
     }
   }
 
-  onClear() {
-    this.form.reset();
-  }
+  onClear() { this.form.reset(); }
 
 }

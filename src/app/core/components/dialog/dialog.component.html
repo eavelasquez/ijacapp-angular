@@ -10,5 +10,5 @@
 <mat-divider></mat-divider>
 <mat-dialog-actions align="end">
   <button mat-button mat-stroked-button mat-dialog-close>Cancelar</button>
-  <button mat-button mat-stroked-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Crear libro</button>
+  <button mat-button mat-stroked-button color="primary" [mat-dialog-close]="true" (click)="onSubmit()" cdkFocusInitial>Crear libro</button>
 </mat-dialog-actions>

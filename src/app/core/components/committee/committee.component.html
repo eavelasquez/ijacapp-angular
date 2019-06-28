@@ -46,6 +46,7 @@
         <mat-step [optional]="isOptional">
           <ng-template matStepLabel>Afiliados</ng-template>
           <div class="text-right mt-1">
+            <button mat-button type="submit" color="primary" (click)="createCommitteeAffils()">Atrás</button>
             <button mat-button matStepperPrevious type="button" color="accent">Atrás</button>
           </div>
 
@@ -57,22 +58,26 @@
           <div class="d-md-flex flex-sm-row">
             <div class="col-sm-12 col-md-6 my-2">
               <p mat-header class="h5 text-uppercase my-2 pl-2 rounded border-left border-primary text-primary font-weight-light">Afiliados</p>
-              <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[doneList]" class="group-list" (cdkDropListDropped)="drop($event)">
-                <div class="item-box" *ngFor="let item of todo" cdkDrag>{{ item }}</div>
+              <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="affiliatesList" [cdkDropListConnectedTo]="[doneList]" class="group-list" (cdkDropListDropped)="drop($event)">
+                <div class="item-box" *ngFor="let item of affiliatesList" cdkDrag>
+                  {{ item.document.number }} <mat-divider vertical></mat-divider> {{ (item.name | titlecase) + ' ' + (item.surname | titlecase) }}
+                </div>
               </div>
             </div>
             <div class="col-sm-12 col-md-6 my-2">
               <p mat-header class="h5 text-uppercase my-2 pl-2 rounded border-left border-primary text-primary font-weight-light">del comité</p>
-              <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" [cdkDropListConnectedTo]="[todoList]" class="group-list" (cdkDropListDropped)="drop($event)">
-                <div class="item-box" *ngFor="let item of done" cdkDrag>{{ item }}</div>
+              <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="affiliatesCommitList" [cdkDropListConnectedTo]="[todoList]" class="group-list" (cdkDropListDropped)="drop($event)">
+                <div class="item-box" *ngFor="let item of affiliatesCommitList" cdkDrag>
+                  {{ item.document.number }} <mat-divider vertical></mat-divider> {{ (item.name | titlecase) + ' ' + (item.surname | titlecase) }}
+                </div>
               </div>
             </div>
           </div>
         </mat-step>
 
         <mat-step>
-          <ng-template matStepLabel>Finalizar</ng-template>
-          <div>
+          <ng-template matStepLabel>Ver comités</ng-template>
+          <div class="">
             <button mat-button matStepperPrevious type="button" color="accent">Atrás</button>
             <button mat-button (click)="stepper.reset()" color="primary">Volver a registrar</button>
           </div>
