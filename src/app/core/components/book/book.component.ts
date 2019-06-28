@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion' | 'cat';
@@ -13,6 +14,7 @@ export interface DialogData {
 })
 export class BookComponent implements OnInit {
 
+  form: FormGroup;
   constructor(public dialog: MatDialog) { }
   panelOpenState = false;
 

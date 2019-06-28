@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'login', loadChildren: () => import('./pages/login-page/login-page.module').then(m => m.LoginPageModule) },
   { path: 'dashboard', component: NavComponent, children: navRoutes }, // canActivateChild: [AuthGuard], canActivate: [AuthGuard]
   { path: 'user-manual', component: UserManualComponent },
-  { path: '**', redirectTo: 'start' }
+  { path: '**', pathMatch: 'full', redirectTo: 'start' }
 ];
 
 @NgModule({
