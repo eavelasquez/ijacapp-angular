@@ -12,4 +12,8 @@ export class MemberService {
   createMember(member: any) {
     this.http.post(URL_SERVER + '/member', member).subscribe(res => console.log(res));
   }
+
+  getMembers() {
+    return this.http.get(URL_SERVER + '/member');
+  }
 }
